@@ -74,6 +74,7 @@ localStorage.removeItem("token");
     - publish (boolean)
     - created
     - updated
+    - comments
   - users
     - id
     - username
@@ -81,6 +82,8 @@ localStorage.removeItem("token");
     - created
     - updated
     - role
+    - posts
+    - comments
   - comments
     - id
     - comment

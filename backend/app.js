@@ -2,8 +2,17 @@ require("dotenv").config();
 
 const express = require("express");
 const passport = require("./middleware/passport"); // configured passport
+
+// middleware
 const errorHandler = require("./middleware/errorHandler");
-const indexRouter = require("../routes/indexRouter");
+
+// Routes
+const indexRouter = require("./routes/indexRouter");
+const loginRouter = require("./routes/loginRouter");
+const registerRouter = require("./routes/registerRouter");
+const postsRouter = require("./routes/postsRouter");
+const commentsRouter = require("./routes/registerRouter");
+const usersRouter = require("./routes/usersRouter");
 
 const app = express();
 
@@ -19,7 +28,7 @@ require("./middleware/passport");
 // Routes
 app.use("/", indexRouter);
 app.use("/login", loginRouter);
-app.use("/register".registerRouter);
+app.use("/register", registerRouter);
 
 // Auth checker
 const requireAuth = passport.authenticate("jwt", { session: false });
