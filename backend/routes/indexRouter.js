@@ -2,6 +2,6 @@ const { Router } = require("express");
 
 const indexRouter = Router();
 
-indexRouter.get("/", getIndex);
+indexRouter.get("/", console.log("Blog API"));
 
 module.exports = indexRouter;

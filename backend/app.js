@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 require("./middleware/passport");
 
 // Routes
-app.use("/", indexRouter);
+// app.use("/", indexRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 

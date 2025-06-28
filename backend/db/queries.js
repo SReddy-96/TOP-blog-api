@@ -28,8 +28,34 @@ const insertUser = async (username, password) => {
   return data;
 };
 
+const insertPost = async (title, post, userId) => {
+  const data = await prisma.posts.create({
+    where: {
+      userId,
+    },
+    data: {
+      title,
+      post,
+      userId,
+    },
+  });
+  return data;
+};
+
+const getPost = async (id, userId) => {
+  const post = await prisma.posts.findFirst({
+    where: {
+      id,
+      userId,
+    },
+  });
+  return post;
+};
+
 module.exports = {
   getUserById,
   getUserByUsername,
   insertUser,
+  insertPost,
+  getPost,
 };

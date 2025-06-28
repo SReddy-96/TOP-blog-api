@@ -4,6 +4,7 @@
   "description": "Backend for my blog api app using express, node, prisma and JWT",
   "main": "app.js",
   "scripts": {
+    "dev": "node --watch app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,7 +24,9 @@
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
     "jsonwebtoken": "^9.0.2",
+    "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
     "prisma": "^6.10.1"
   }
 }
