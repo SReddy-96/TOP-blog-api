@@ -35,7 +35,7 @@ const requireAuth = passport.authenticate("jwt", { session: false });
 
 // protected Routes
 app.use("/posts", requireAuth, postsRouter);
-app.use("/posts/:id/comments", requireAuth, commentsRouter);
+app.use("/posts/:postId/comments", requireAuth, commentsRouter);
 app.use("/users", requireAuth, usersRouter);
 
 // error handler
