@@ -120,25 +120,26 @@ localStorage.removeItem("token");
 
   - auth to check if admin
   - check if logged in for certain routes, can see home page, blog, login and register if not
-  - check if comment is current user
+  - check if comment is current user (won't need middleware can just check in react if the comment is the current-user then show a button)
   - check if profile is current user
 
 - Controllers
   - posts
-    - create (admin)
-    - read (get comments of post too )
-    - update(admin)
-    - delete(admin)
+    - create (admin) ✅
+    - read (get comments of post too ) ✅
+    - update(admin) ✅
+    - delete(admin) ✅
   - comments (only users)
     - create (user of comment)
-    - read ?
+    - read
       - get all comments of post when post is loaded
+      - get all users comments for profile
     - update (user of comment)
     - delete (user of comment)
   - users
-    - create (register)
+    - create (register) ✅
     - read (any)
     - update (current user === user)
     - delete (current user === user)
   - index
-    - read (show home page)
+    - read (show home page) (might not be need or can store all posts in index to show them all or a dimmed down version for display)
