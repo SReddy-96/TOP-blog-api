@@ -11,7 +11,7 @@ const indexRouter = require("./routes/indexRouter");
 const loginRouter = require("./routes/loginRouter");
 const registerRouter = require("./routes/registerRouter");
 const postsRouter = require("./routes/postsRouter");
-const commentsRouter = require("./routes/registerRouter");
+const commentsRouter = require("./routes/commentsRouter");
 const usersRouter = require("./routes/usersRouter");
 
 const app = express();
@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 require("./middleware/passport");
 
 // Routes
-// app.use("/", indexRouter);
+app.use("/", indexRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 

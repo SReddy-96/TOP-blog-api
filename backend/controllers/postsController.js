@@ -43,13 +43,23 @@ const getPost = async (req, res, next) => {
         errors: [{ msg: "Invalid or missing post ID" }],
       });
     }
-    const post = await db.getPost(parseInt(id), parseInt(req.user.id));
+    const post = await db.getPost(parseInt(id));
     if (!post) {
       return res.status(400).json({
-        errors: [{ msg: "Failed to add new post" }],
+        errors: [{ msg: "Failed to get post" }],
       });
     }
     res.status(200).json({ post });
+  } catch (err) {
+    err.statusCode = err.statusCode || 500;
+    next(err);
+  }
+};
+
+const getAllPosts = async (req, res, next) => {
+  try {
+    const allPosts = await db.getAllPosts();
+    res.status(200).json({ allPosts });
   } catch (err) {
     err.statusCode = err.statusCode || 500;
     next(err);
@@ -116,6 +126,7 @@ const deletePost = async (req, res, next) => {
 module.exports = {
   createPost,
   getPost,
+  getAllPosts,
   updatePost,
   deletePost,
 };

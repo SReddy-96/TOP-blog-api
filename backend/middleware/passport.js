@@ -5,7 +5,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
 
-const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret";
+const JWT_SECRET = process.env.ACCESS_TOKEN_SECRET || "your_jwt_secret";
 
 // Local strategy for login (issue JWT on success)
 passport.use(

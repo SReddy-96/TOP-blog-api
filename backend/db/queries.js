@@ -31,9 +31,6 @@ const insertUser = async (username, password) => {
 
 const insertPost = async (title, post, userId) => {
   const data = await prisma.posts.create({
-    where: {
-      userId,
-    },
     data: {
       title,
       post,
@@ -43,17 +40,21 @@ const insertPost = async (title, post, userId) => {
   return data;
 };
 
-const getPost = async (id, userId) => {
+const getPost = async (id) => {
   const post = await prisma.posts.findFirst({
     where: {
       id,
-      userId,
     },
     include: {
       comments: true,
     },
   });
   return post;
+};
+
+const getAllPosts = async () => {
+  const data = await prisma.posts.findMany();
+  return data;
 };
 
 const updatePost = async (id, title, post, userId) => {
@@ -65,6 +66,15 @@ const updatePost = async (id, title, post, userId) => {
     data: {
       title,
       post,
+    },
+  });
+  return data;
+};
+
+const deletePost = async (id) => {
+  const data = await prisma.posts.delete({
+    where: {
+      id,
     },
   });
   return data;
@@ -113,15 +123,41 @@ const deleteComment = async (id) => {
   return data;
 };
 
+const updateUser = async (id, username, password) => {
+  const data = await prisma.users.update({
+    where: {
+      id,
+    },
+    data: {
+      username,
+      password,
+    },
+  });
+  return data;
+};
+
+const deleteUser = async (id) => {
+  const data = await prisma.users.delete({
+    where: {
+      id,
+    },
+  });
+  return data;
+};
+
 module.exports = {
   getUserById,
   getUserByUsername,
   insertUser,
   insertPost,
   getPost,
+  getAllPosts,
   updatePost,
+  deletePost,
   getCommentById,
   insertComment,
   updateComment,
   deleteComment,
+  updateUser,
+  deleteUser,
 };

@@ -127,19 +127,18 @@ localStorage.removeItem("token");
   - posts
     - create (admin) ✅
     - read (get comments of post too ) ✅
+    - read all (get all posts) ✅
     - update(admin) ✅
     - delete(admin) ✅
   - comments (only users)
-    - create (user of comment)
-    - read
-      - get all comments of post when post is loaded
-      - get all users comments for profile
-    - update (user of comment)
-    - delete (user of comment)
+    - create (user of comment)✅
+    - read not needed
+    - update (user of comment)✅
+    - delete (user of comment)✅
   - users
     - create (register) ✅
-    - read (any)
-    - update (current user === user)
-    - delete (current user === user)
+    - read (any show comments too) ✅
+    - update (current user === user) ✅
+    - delete (current user === user) ✅
   - index
-    - read (show home page) (might not be need or can store all posts in index to show them all or a dimmed down version for display)
+    - read (show home page)
