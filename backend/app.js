@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const express = require("express");
+const cors = require("cors");
 const passport = require("./middleware/passport"); // configured passport
 
 // middleware
@@ -15,6 +16,16 @@ const commentsRouter = require("./routes/commentsRouter");
 const usersRouter = require("./routes/usersRouter");
 
 const app = express();
+
+// enable CORS
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "http://localhost:5173", // your frontend URL
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 
 // backend understand json
 app.use(express.json());

@@ -5,18 +5,19 @@ import ErrorPage from "./error-page";
 import "./index.css";
 
 // routes
-import Index from "./components/index";
-import Login from "./components/login";
-import Register from "./components/register";
-import Post from "./components/post";
+import Index from "./components/index/index";
+import Login from "./components/login/login";
+import { action as loginAction } from "./components/login/login.data";
+import Register from "./components/register/register";
+import Post from "./components/post/post";
 import {
   loader as postLoader,
   action as postAction,
 } from "./components/post/post.data";
-import Posts from "./components/posts";
+import Posts from "./components/posts/posts";
 import { loader as postsLoader } from "./components/posts/posts.data";
-import Profile from "./components/profile";
-import Root from "./components/root";
+import Profile from "./components/profile/profile";
+import Root from "./components/root/root";
 
 // add routes to pages !!!
 const router = createBrowserRouter([
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
           { index: true, element: <Index /> },
-          { path: "login", element: <Login /> },
+          { path: "login", action: loginAction, element: <Login /> },
           { path: "register", element: <Register /> },
           {
             path: "posts",

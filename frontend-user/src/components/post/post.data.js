@@ -1,7 +1,19 @@
-
 export async function loader({ params }) {
-  const res = await fetch(`http://localhost:3000/posts/${params.postId}`);
-  if (!res.ok) throw new Response("Not Found", { status: 404 });
+  const token = localStorage.getItem("token");
+  const res = await fetch(`http://localhost:3000/posts/${params.postId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!res.ok) {
+    const errorData = await res.json();
+    if (errorData.errors) {
+      throw new Error(errorData.errors[0].msg);
+    }
+    throw new Error("Failed to get post");
+  }
   return res.json();
 }
 
@@ -19,6 +31,13 @@ export async function action({ request, params }) {
       body: JSON.stringify({ comment: formData.get("comment") }),
     },
   );
-  if (!res.ok) throw new Error("Failed to post comment");
+    if (!res.ok) {
+      const errorData = await res.json();
+      // Handle validation errors from your backend
+      if (errorData.errors) {
+        throw new Error(errorData.errors[0].msg);
+      }
+      throw new Error("Failed to comment");
+    }
   return res.json();
 }

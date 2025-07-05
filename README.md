@@ -33,12 +33,7 @@ A blog site using jamstack to separate out the front-end and back-end, showing u
 
 ```js
 // On login success
-localStorage.setItem("token", toke// On login success
 localStorage.setItem('token', token);
-
-// On logout
-localStorage.removeItem('token');n);
-
 // On logout
 localStorage.removeItem("token");
 ```

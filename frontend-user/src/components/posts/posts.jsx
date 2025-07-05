@@ -1,12 +1,12 @@
 import { useLoaderData, Link, Outlet } from "react-router-dom";
 
 export default function Posts() {
-  const { posts } = useLoaderData();
+  const { allPosts } = useLoaderData();
   return (
     <div>
       <h2>All Posts</h2>
       <ul>
-        {posts.map(post => (
+        {allPosts.map(post => (
           <li key={post.id}>
             <Link to={String(post.id)}>{post.title}</Link>
           </li>
