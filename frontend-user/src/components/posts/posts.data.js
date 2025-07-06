@@ -1,3 +1,5 @@
+import { redirect } from "react-router-dom";
+
 export async function loader() {
   const token = localStorage.getItem("token");
   const res = await fetch("http://localhost:3000/posts", {
@@ -7,6 +9,9 @@ export async function loader() {
       Authorization: `Bearer ${token}`,
     },
   });
+  if (res.status === 401) {
+    return redirect("/");
+  }
   if (!res.ok) {
     const errorData = await res.json();
     // Handle validation errors from your backend

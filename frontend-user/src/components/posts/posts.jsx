@@ -1,4 +1,4 @@
-import { useLoaderData, Link, Outlet } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 
 export default function Posts() {
   const { allPosts } = useLoaderData();
@@ -12,7 +12,6 @@ export default function Posts() {
           </li>
         ))}
       </ul>
-      <Outlet />
     </div>
   );
 }

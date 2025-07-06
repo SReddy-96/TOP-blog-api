@@ -1,3 +1,7 @@
-export default function Index(){
-    return console.log("index")
+export default function Index() {
+  return (
+    <>
+      <h1>HOME PAGE</h1>
+    </>
+  );
 }
