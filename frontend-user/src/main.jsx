@@ -14,6 +14,8 @@ import Post from "./components/post/post";
 import {
   loader as postLoader,
   action as postAction,
+  deleteCommentAction,
+  editCommentAction
 } from "./components/post/post.data";
 import Posts from "./components/posts/posts";
 import { loader as postsLoader } from "./components/posts/posts.data";
@@ -44,6 +46,16 @@ const router = createBrowserRouter([
             loader: postLoader,
             action: postAction,
             element: <Post />,
+            children: [
+              {
+                path: `comments/:commentId`,
+                action: deleteCommentAction,
+              },
+              {
+                path: `comments/:commentId/edit`,
+                action: editCommentAction,
+              }
+            ],
           },
           { path: "users/:userId", loader: userLoader, element: <Profile /> },
         ],

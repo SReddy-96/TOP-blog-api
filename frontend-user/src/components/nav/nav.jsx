@@ -18,8 +18,6 @@ export default function Nav() {
     navigate("/");
   }
 
-  console.log(userId);
-
   return (
     <nav>
       {token ? (

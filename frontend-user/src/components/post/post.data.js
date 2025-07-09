@@ -47,3 +47,37 @@ export async function action({ request, params }) {
   }
   return res.json();
 }
+
+export async function deleteCommentAction({ params }) {
+  const token = localStorage.getItem("token");
+  const res = await fetch(
+    `http://localhost:3000/posts/${params.postId}/comments/${params.commentId}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+  if (!res.ok) throw new Error("Failed to delete comment");
+  return null;
+}
+
+export async function editCommentAction({ request, params }) {
+  const formData = await request.formData();
+  const token = localStorage.getItem("token");
+  const res = await fetch(
+    `http://localhost:3000/posts/${params.postId}/comments/${params.commentId}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ comment: formData.get("comment") }),
+    },
+  );
+  if (!res.ok) throw new Error("Failed to edit comment");
+  return null;
+}

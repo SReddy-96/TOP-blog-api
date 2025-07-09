@@ -1,38 +1,25 @@
 import { useEffect, useState } from "react";
-import { useLoaderData, Form, useNavigation, Link } from "react-router-dom";
+import { useLoaderData, Form, Link, useFetcher } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import styles from "./post.module.css";
 
 export default function Post() {
   const { post } = useLoaderData();
+  const fetcher = useFetcher();
+
   const [comment, setComment] = useState("");
-  const navigation = useNavigation();
+  const [editingId, setEditingId] = useState(null);
+  const [editValue, setEditValue] = useState("");
+
   const token = localStorage.getItem("token");
   const currentId = jwtDecode(token).id;
 
   // reset text area
   useEffect(() => {
-    if (navigation.state === "idle") {
+    if (fetcher.state === "idle") {
       setComment("");
     }
-  }, [navigation.state]);
-
-  const deleteComment = async (commentId) => {
-    const res = await fetch(
-      `http://localhost:3000/posts/${post.id}/comments/${commentId}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    );
-    if (!res.ok) {
-      throw new Error("Failed to Delete comment");
-    }
-    // need sorting when the comment is deleted it should be updated
-  };
+  }, [fetcher.state]);
 
   return (
     <div>
@@ -42,22 +29,52 @@ export default function Post() {
       <ul>
         {post.comments?.map((c) => (
           <li key={c.id}>
-            {c.comment} -
-            <Link to={`/users/${c.user.id}`}>{c.user.username}</Link>
-            <br />
-            <i className={styles.commentDate}>
-              {new Date(c.created).toLocaleDateString("en-GB")}
-            </i>
-            {currentId === c.user.id && (
+            {editingId === c.id ? (
+              <fetcher.Form
+                method="post"
+                action={`comments/${c.id}/edit`}
+                onSubmit={() => setEditingId(null)}
+              >
+                <textarea
+                  name="comment"
+                  value={editValue}
+                  onChange={(e) => setEditValue(e.target.value)}
+                  required
+                />
+                <button type="submit">Save</button>
+                <button type="button" onClick={() => setEditingId(null)}>
+                  Cancel
+                </button>
+              </fetcher.Form>
+            ) : (
               <>
-                <Link>Edit</Link>
-                <button onClick={() => deleteComment(c.id)}>Delete</button>
+                {c.comment} -
+                <Link to={`/users/${c.user.id}`}>{c.user.username}</Link>
+                <br />
+                <i className={styles.commentDate}>
+                  {new Date(c.created).toLocaleDateString("en-GB")}
+                </i>
+                {currentId === c.user.id && (
+                  <>
+                    <button
+                      onClick={() => {
+                        setEditingId(c.id);
+                        setEditValue(c.comment);
+                      }}
+                    >
+                      Edit
+                    </button>
+                    <fetcher.Form method="DELETE" action={`comments/${c.id}`}>
+                      <button type="submit">Delete</button>
+                    </fetcher.Form>
+                  </>
+                )}
               </>
             )}
           </li>
         ))}
       </ul>
-      <Form method="post">
+      <fetcher.Form method="post">
         <textarea
           name="comment"
           value={comment}
@@ -65,7 +82,7 @@ export default function Post() {
           required
         />
         <button type="submit">Add Comment</button>
-      </Form>
+      </fetcher.Form>
     </div>
   );
 }
