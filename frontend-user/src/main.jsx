@@ -18,6 +18,7 @@ import {
 import Posts from "./components/posts/posts";
 import { loader as postsLoader } from "./components/posts/posts.data";
 import Profile from "./components/profile/profile";
+import { loader as userLoader } from "./components/profile/profile.data";
 import Root from "./components/root/root";
 
 // add routes to pages !!!
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
             action: postAction,
             element: <Post />,
           },
-          { path: "users/:userid", element: <Profile /> },
+          { path: "users/:userId", loader: userLoader, element: <Profile /> },
         ],
       },
     ],
