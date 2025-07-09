@@ -46,7 +46,13 @@ const getPost = async (id) => {
       id,
     },
     include: {
-      comments: true,
+      comments: {
+        include: {
+          user: {
+            select: { username: true },
+          },
+        },
+      },
     },
   });
   return post;
