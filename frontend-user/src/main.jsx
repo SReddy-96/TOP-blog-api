@@ -15,12 +15,16 @@ import {
   loader as postLoader,
   action as postAction,
   deleteCommentAction,
-  editCommentAction
+  editCommentAction,
 } from "./components/post/post.data";
 import Posts from "./components/posts/posts";
 import { loader as postsLoader } from "./components/posts/posts.data";
 import Profile from "./components/profile/profile";
-import { loader as userLoader } from "./components/profile/profile.data";
+import {
+  loader as userLoader,
+  editUserAction,
+  deleteUserAction,
+} from "./components/profile/profile.data";
 import Root from "./components/root/root";
 
 // add routes to pages !!!
@@ -48,16 +52,30 @@ const router = createBrowserRouter([
             element: <Post />,
             children: [
               {
-                path: `comments/:commentId`,
+                path: "comments/:commentId",
                 action: deleteCommentAction,
               },
               {
-                path: `comments/:commentId/edit`,
+                path: "comments/:commentId/edit",
                 action: editCommentAction,
-              }
+              },
             ],
           },
-          { path: "users/:userId", loader: userLoader, element: <Profile /> },
+          {
+            path: "users/:userId",
+            loader: userLoader,
+            element: <Profile />,
+            children: [
+              {
+                path: "edit",
+                action: editUserAction,
+              },
+              {
+                path: "delete",
+                action: deleteUserAction,
+              },
+            ],
+          },
         ],
       },
     ],
