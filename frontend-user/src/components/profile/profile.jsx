@@ -6,7 +6,7 @@ export default function Profile() {
   const { user } = useLoaderData();
   const fetcher = useFetcher();
 
-  const [editValue, setEditValue] = useState({});
+  const [editUsername, setEditUsername] = useState("");
   const [editingId, setEditingId] = useState(null);
 
   const token = localStorage.getItem("token");
@@ -14,6 +14,7 @@ export default function Profile() {
 
   return (
     <>
+      <span>{fetcher.state === "submitting" ? "Editing..." : ""}</span>
       {editingId === user.id ? (
         <fetcher.Form
           method="PUT"
@@ -23,11 +24,14 @@ export default function Profile() {
           <input
             type="text"
             name="username"
-            value={editValue.username}
-            onChange={(e) => setEditValue(e.target.value)}
+            value={editUsername}
+            onChange={(e) => setEditUsername(e.target.value)}
             required
+            autoComplete="true"
           ></input>
-          <button type="submit">Save</button>
+          <button type="submit" disabled={editUsername === user.username}>
+            Save
+          </button>
           <button type="button" onClick={() => setEditingId(null)}>
             Cancel
           </button>
@@ -36,6 +40,8 @@ export default function Profile() {
         <>
           <p>Username: {user.username}</p>
           <p>Created: {new Date(user.created).toDateString()}</p>
+          <p>Updated: {new Date(user.updated).toDateString()}</p>
+          <p>Amount of Comments: {user.comments.length}</p>
         </>
       )}
       {currentId === user.id ? (
@@ -43,7 +49,7 @@ export default function Profile() {
           <button
             onClick={() => {
               setEditingId(user.id);
-              setEditValue(user);
+              setEditUsername(user.username);
             }}
           >
             Edit

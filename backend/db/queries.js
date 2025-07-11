@@ -6,6 +6,9 @@ const getUserById = async (id) => {
     where: {
       id,
     },
+    include: {
+      comments: true,
+    },
   });
   return data;
 };
@@ -129,14 +132,13 @@ const deleteComment = async (id) => {
   return data;
 };
 
-const updateUser = async (id, username, password) => {
+const updateUser = async (id, username) => {
   const data = await prisma.users.update({
     where: {
       id,
     },
     data: {
       username,
-      password,
     },
   });
   return data;

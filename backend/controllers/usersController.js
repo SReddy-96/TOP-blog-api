@@ -1,6 +1,29 @@
 const db = require("../db/queries");
-const validateUser = require("../middleware/validateUser");
-const bcrypt = require("bcryptjs");
+const { body, validationResult } = require("express-validator");
+
+// validate updated username
+const notEmptyErr = "must not be empty";
+const lengthErr = "must be between 2 and 30 characters.";
+
+const validateUsername = [
+  body("username")
+    .trim()
+    .notEmpty()
+    .withMessage(`username ${notEmptyErr}`)
+    .isLength({ min: 3, max: 20 })
+    .withMessage(`Username ${lengthErr}`)
+    .matches(/^[a-zA-Z0-9_.-]+$/) // Recommended: Allow letters, numbers, underscore, dot, hyphen
+    .withMessage(
+      "Username can only contain letters, numbers, underscores, dots, and hyphens.",
+    )
+    .custom(async (value) => {
+      const user = await db.getUserByUsername(value);
+      if (user) {
+        throw new Error("Username already in use");
+      }
+      return true;
+    }),
+];
 
 // Create(handled in register)
 
@@ -28,11 +51,11 @@ const getUser = async (req, res, next) => {
 
 // Update
 const updateUser = [
-  validateUser,
+  validateUsername,
   async (req, res, next) => {
     try {
       // check body for validation and sanitisation
-      const { username, password } = req.body;
+      const { username } = req.body;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({
@@ -66,11 +89,9 @@ const updateUser = [
       }
 
       // update data
-      const hashedPassword = await bcrypt.hash(password, 10);
       const updatedUser = await db.updateUser(
         parseInt(id),
         username,
-        hashedPassword,
       );
       if (!updatedUser) {
         return res.status(400).json({
