@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
 import { useLoaderData, Link, useFetcher } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
 import styles from "./post.module.css";
+import CommentCard from "../commentCard/commentCard";
 
 export default function Post() {
   const { post } = useLoaderData();
   const fetcher = useFetcher();
 
   const [comment, setComment] = useState("");
-  const [editingId, setEditingId] = useState(null);
-  const [editValue, setEditValue] = useState("");
-
-  const token = localStorage.getItem("token");
-  const currentId = jwtDecode(token).id;
 
   // reset text area
   useEffect(() => {
@@ -22,60 +17,20 @@ export default function Post() {
   }, [fetcher.state]);
 
   return (
-    <div>
-      <h2>{post.title}</h2>
-      <p>{post.post}</p>
-      <h3>Comments</h3>
-      <ul>
-        {post.comments?.map((c) => (
-          <li key={c.id}>
-            {editingId === c.id ? (
-              <fetcher.Form
-                method="post"
-                action={`comments/${c.id}/edit`}
-                onSubmit={() => setEditingId(null)}
-              >
-                <textarea
-                  name="comment"
-                  value={editValue}
-                  onChange={(e) => setEditValue(e.target.value)}
-                  required
-                />
-                <button type="submit">Save</button>
-                <button type="button" onClick={() => setEditingId(null)}>
-                  Cancel
-                </button>
-              </fetcher.Form>
-            ) : (
-              <>
-                {c.comment} -
-                <Link to={`/users/${c.user.id}`}>{c.user.username}</Link>
-                <br />
-                <i className={styles.commentDate}>
-                  {new Date(c.created).toLocaleDateString("en-GB")}
-                </i>
-                {currentId === c.user.id && (
-                  <>
-                    <button
-                      onClick={() => {
-                        setEditingId(c.id);
-                        setEditValue(c.comment);
-                      }}
-                    >
-                      Edit
-                    </button>
-                    <fetcher.Form method="DELETE" action={`comments/${c.id}`}>
-                      <button type="submit">Delete</button>
-                    </fetcher.Form>
-                  </>
-                )}
-              </>
-            )}
-          </li>
+    <div className={styles.post}>
+      <h2 className={styles.postTitle}>{post.title}</h2>
+      <p className={styles.postText}>{post.post}</p>
+      <h3 className={styles.commentTitle}>Comments</h3>
+      <hr className={styles.line} />
+      <div className={styles.commentWrapper}>
+        {post.comments?.map((comment) => (
+          <CommentCard key={comment.id} comment={comment} />
         ))}
-      </ul>
-      <fetcher.Form method="post">
+      </div>
+      <fetcher.Form method="post" className={styles.commentForm}>
+        <label htmlFor="comment">Comment: </label>
         <textarea
+          id="comment"
           name="comment"
           value={comment}
           onChange={(e) => setComment(e.target.value)}

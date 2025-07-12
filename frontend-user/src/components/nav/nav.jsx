@@ -21,17 +21,29 @@ export default function Nav() {
 
   return (
     <nav className={styles.nav}>
-      <h1 className={styles.navTitle}>Blog-API</h1>
+      <NavLink to={"/"} className={styles.navTitle}>
+        Blog-API
+      </NavLink>
       {token ? (
         <>
-          <NavLink to={"posts"} className={styles.navLink}>Posts</NavLink>
-          <NavLink to={`users/${userId}`} className={styles.navLink}>Profile</NavLink>
-          <button onClick={handleLogout} className={styles.navLink}>Logout</button>
+          <NavLink to={"posts"} className={styles.navLink}>
+            Posts
+          </NavLink>
+          <NavLink to={`users/${userId}`} className={styles.navLink}>
+            Profile
+          </NavLink>
+          <button onClick={handleLogout} className={styles.navLink}>
+            Logout
+          </button>
         </>
       ) : (
         <>
-          <NavLink to={"login"} className={styles.navLink}>Login</NavLink>
-          <NavLink to={"register"} className={styles.navLink}>Register</NavLink>
+          <NavLink to={"login"} className={styles.navLink}>
+            Login
+          </NavLink>
+          <NavLink to={"register"} className={styles.navLink}>
+            Register
+          </NavLink>
         </>
       )}
     </nav>

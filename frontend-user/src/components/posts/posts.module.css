@@ -6,7 +6,8 @@
 }
 
 .postsTitle {
+  padding: 1rem;
   text-align: center;
-  font-size: xx-large;
-  font-weight: bold;
+  font-size: 5em;
+  background-color: #aaa;
 }

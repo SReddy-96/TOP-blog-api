@@ -1,13 +1,13 @@
 .nav {
-  padding: 1rem;
+  padding: 1rem 2rem;
   display: flex;
   gap: 1rem;
-  margin-bottom: 1rem;
   align-items: center;
 }
 
 .navTitle {
   flex: 1;
+  font-size: xx-large;
 }
 
 .navLink:hover {

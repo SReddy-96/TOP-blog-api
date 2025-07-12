@@ -1,6 +1,7 @@
 import { useLoaderData, useFetcher } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
+import styles from "./profile.module.css";
 
 export default function Profile() {
   const { user } = useLoaderData();
@@ -13,7 +14,8 @@ export default function Profile() {
   const currentId = jwtDecode(token).id;
 
   return (
-    <>
+    <div className={styles.profileWrapper}>
+      <h2 className={styles.profileTitle}>Profile</h2>
       <span>{fetcher.state === "submitting" ? "Editing..." : ""}</span>
       {editingId === user.id ? (
         <fetcher.Form
@@ -21,6 +23,7 @@ export default function Profile() {
           action={"edit"}
           onSubmit={() => setEditingId(null)}
         >
+          <label htmlFor="username">Edit Username: </label>
           <input
             type="text"
             name="username"
@@ -37,15 +40,27 @@ export default function Profile() {
           </button>
         </fetcher.Form>
       ) : (
-        <>
-          <p>Username: {user.username}</p>
-          <p>Created: {new Date(user.created).toDateString()}</p>
-          <p>Updated: {new Date(user.updated).toDateString()}</p>
-          <p>Amount of Comments: {user.comments.length}</p>
-        </>
+        <div className={styles.profileData}>
+          <p>
+            <span className={styles.profileHeaders}>Username:</span>{" "}
+            {user.username}
+          </p>
+          <p>
+            <span className={styles.profileHeaders}>Created:</span>{" "}
+            {new Date(user.created).toDateString()}
+          </p>
+          <p>
+            <span className={styles.profileHeaders}>Last Updated:</span>{" "}
+            {new Date(user.updated).toDateString()}
+          </p>
+          <p>
+            <span className={styles.profileHeaders}>Amount of Comments:</span>{" "}
+            {user.comments.length}
+          </p>
+        </div>
       )}
       {currentId === user.id ? (
-        <>
+        <div className={styles.profileButtons}>
           <button
             onClick={() => {
               setEditingId(user.id);
@@ -57,10 +72,10 @@ export default function Profile() {
           <fetcher.Form method="DELETE" action={"delete"}>
             <button type="submit">Delete</button>
           </fetcher.Form>
-        </>
+        </div>
       ) : (
         <></>
       )}
-    </>
+    </div>
   );
 }
