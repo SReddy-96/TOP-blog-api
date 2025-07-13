@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLoaderData, Link, useFetcher } from "react-router-dom";
 import styles from "./post.module.css";
+import button from "../../assets/styles/button.module.css";
 import CommentCard from "../commentCard/commentCard";
 
 export default function Post() {
@@ -36,7 +37,9 @@ export default function Post() {
           onChange={(e) => setComment(e.target.value)}
           required
         />
-        <button type="submit">Add Comment</button>
+        <button className={button.primaryButton} type="submit">
+          Add Comment
+        </button>
       </fetcher.Form>
     </div>
   );

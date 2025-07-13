@@ -2,6 +2,7 @@ import styles from "./commentCard.module.css";
 import { Link, useFetcher } from "react-router-dom";
 import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import button from "../../assets/styles/button.module.css";
 
 export default function CommentCard({ comment }) {
   const Fetcher = useFetcher();
@@ -27,8 +28,14 @@ export default function CommentCard({ comment }) {
             required
           />
           <div className={styles.commentButtons}>
-            <button type="submit">Save</button>
-            <button type="button" onClick={() => setEditingId(null)}>
+            <button className={button.primaryButton} type="submit">
+              Save
+            </button>
+            <button
+              className={button.dangerButton}
+              type="button"
+              onClick={() => setEditingId(null)}
+            >
               Cancel
             </button>
           </div>
@@ -49,6 +56,7 @@ export default function CommentCard({ comment }) {
           {currentId === comment.user.id && (
             <div className={styles.commentButtons}>
               <button
+                className={button.secondaryButton}
                 onClick={() => {
                   setEditingId(comment.id);
                   setEditValue(comment.comment);
@@ -57,7 +65,9 @@ export default function CommentCard({ comment }) {
                 Edit
               </button>
               <Fetcher.Form method="DELETE" action={`comments/${comment.id}`}>
-                <button type="submit">Delete</button>
+                <button className={button.dangerButton} type="submit">
+                  Delete
+                </button>
               </Fetcher.Form>
             </div>
           )}

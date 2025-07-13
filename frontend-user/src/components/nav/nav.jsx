@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import styles from "./nav.module.css";
+import button from "../../assets/styles/button.module.css";
 
 export default function Nav() {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ export default function Nav() {
           <NavLink to={`users/${userId}`} className={styles.navLink}>
             Profile
           </NavLink>
-          <button onClick={handleLogout} className={styles.navLink}>
+          <button onClick={handleLogout} className={button.secondaryButton}>
             Logout
           </button>
         </>

@@ -9,5 +9,5 @@
   padding: 1rem;
   text-align: center;
   font-size: 5em;
-  background-color: #aaa;
+  background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
 }
