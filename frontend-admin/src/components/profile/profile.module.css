@@ -1,9 +1,7 @@
 .profileTitle {
-  font-size: 3em;
-  background:  linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
-  padding: 1rem;
-  width: 100%;
   text-align: center;
+  font-weight: bold;
+  font-size: xx-large;
 }
 
 .profileWrapper {

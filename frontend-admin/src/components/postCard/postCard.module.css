@@ -1,13 +1,13 @@
 .postCard {
   padding: 1rem;
-  border: 1px solid #000;
-  border-radius: 1rem;
+  border-bottom: solid 1px #aaa;
   display: flex;
   gap: 1rem;
 }
 
 .postCard:hover {
   box-shadow: 0 4px 4px #00000063;
+  border: 1px solid #aaa;
   background-color: #dbdbdb85;
 }
 

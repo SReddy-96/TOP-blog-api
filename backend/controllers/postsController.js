@@ -19,8 +19,13 @@ const createPost = [
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
-      const { title, post } = req.body;
-      const newPost = await db.insertPost(title, post, parseInt(req.user.id));
+      const { title, post, published } = req.body;
+      const newPost = await db.insertPost(
+        title,
+        post,
+        parseInt(req.user.id),
+        published === undefined ? false : published,
+      );
       if (!newPost) {
         return res.status(400).json({
           errors: [{ msg: "Failed to add new post" }],
@@ -81,12 +86,13 @@ const updatePost = [
           errors: [{ msg: "Invalid or missing post ID" }],
         });
       }
-      const { title, post } = req.body;
+      const { title, post, published } = req.body;
       const updatedPost = await db.updatePost(
         parseInt(id),
         title,
         post,
         parseInt(req.user.id),
+        published === undefined ? false : published
       );
       if (!updatedPost) {
         return res

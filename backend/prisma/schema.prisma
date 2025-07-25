@@ -25,14 +25,15 @@ model Users {
 }
 
 model Posts {
-  id       Int        @id @default(autoincrement())
-  title    String     @db.VarChar(100)
-  post     String     @db.Text
-  created  DateTime   @default(now())
-  updated  DateTime   @updatedAt
-  user     Users      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId   Int
-  comments Comments[]
+  id        Int        @id @default(autoincrement())
+  title     String     @db.VarChar(100)
+  post      String     @db.Text
+  created   DateTime   @default(now())
+  updated   DateTime   @updatedAt
+  published Boolean    @default(false)
+  user      Users      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  comments  Comments[]
 }
 
 model Comments {

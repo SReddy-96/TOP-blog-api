@@ -53,8 +53,8 @@ export default function CommentCard({ comment }) {
           <i className={styles.commentDate}>
             {new Date(comment.created).toLocaleDateString("en-GB")}
           </i>
-          {currentId === comment.user.id && (
-            <div className={styles.commentButtons}>
+          <div className={styles.commentButtons}>
+            {currentId === comment.user.id && (
               <button
                 className={button.secondaryButton}
                 onClick={() => {
@@ -64,13 +64,13 @@ export default function CommentCard({ comment }) {
               >
                 Edit
               </button>
-            </div>
-          )}
-          <Fetcher.Form method="DELETE" action={`comments/${comment.id}`}>
-            <button className={button.dangerButton} type="submit">
-              Delete
-            </button>
-          </Fetcher.Form>
+            )}
+            <Fetcher.Form method="DELETE" action={`comments/${comment.id}`}>
+              <button className={button.dangerButton} type="submit">
+                Delete
+              </button>
+            </Fetcher.Form>
+          </div>
         </div>
       )}
     </div>

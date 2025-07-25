@@ -7,13 +7,14 @@ import button from "../../assets/styles/button.module.css";
 export default function NewPost() {
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
+  const [published, setPublished] = useState(false);
 
   const handleEditorChange = (content) => {
     setContent(content);
   };
 
   return (
-    <div className={styles.wrapper}> 
+    <div className={styles.wrapper}>
       <h2 className={styles.title}>Create a New Post</h2>
       <Form method="POST" className={styles.form}>
         <div>
@@ -67,6 +68,19 @@ export default function NewPost() {
             }}
           />
         </div>
+
+        <label htmlFor="published" className={styles.checkboxWrapper}>
+          <input
+            className={styles.checkbox}
+            type="checkbox"
+            id="published"
+            name="published"
+            checked={published}
+            onChange={(e) => setPublished(e.target.checked)}
+          />
+          Publish
+        </label>
+
         <input type="hidden" name="content" value={content} />
         <div className={styles.buttonWrapper}>
           <button type="submit" className={button.primaryButton}>

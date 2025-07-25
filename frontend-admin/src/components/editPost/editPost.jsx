@@ -9,6 +9,7 @@ export default function EditPost() {
   const { post } = useLoaderData();
   const [content, setContent] = useState(post.post);
   const [title, setTitle] = useState(post.title);
+  const [published, setPublished] = useState(post.published);
 
   const handleEditorChange = (content) => {
     setContent(content);
@@ -70,6 +71,15 @@ export default function EditPost() {
             }}
           />
         </div>
+
+        <label htmlFor="published">Published:</label>
+        <input
+          type="checkbox"
+          id="published"
+          name="published"
+          checked={published}
+          onChange={(e) => setPublished(e.target.checked)}
+        />
         <input type="hidden" name="content" value={content} />
         <div className={styles.buttonWrapper}>
           <button type="submit" className={button.primaryButton}>

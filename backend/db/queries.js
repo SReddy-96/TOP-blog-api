@@ -32,12 +32,13 @@ const insertUser = async (username, password) => {
   return data;
 };
 
-const insertPost = async (title, post, userId) => {
+const insertPost = async (title, post, userId, published) => {
   const data = await prisma.posts.create({
     data: {
       title,
       post,
       userId,
+      published
     },
   });
   return data;
@@ -68,7 +69,7 @@ const getAllPosts = async () => {
   return data;
 };
 
-const updatePost = async (id, title, post, userId) => {
+const updatePost = async (id, title, post, userId, published) => {
   const data = await prisma.posts.update({
     where: {
       id,
@@ -77,6 +78,7 @@ const updatePost = async (id, title, post, userId) => {
     data: {
       title,
       post,
+      published
     },
   });
   return data;

@@ -12,6 +12,7 @@ export async function action({ request }) {
       body: JSON.stringify({
         title: formData.get("title"),
         post: formData.get("content"),
+        published: formData.get("published") === "on", // Convert checkbox value to boolean
       }),
     });
 

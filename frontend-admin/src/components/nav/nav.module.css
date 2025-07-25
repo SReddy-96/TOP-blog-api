@@ -3,6 +3,9 @@
   display: flex;
   gap: 1rem;
   align-items: center;
+  background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+  box-shadow: 0 2px 2px #aaa;
+  margin-bottom: 1rem;
 }
 
 .navTitle {

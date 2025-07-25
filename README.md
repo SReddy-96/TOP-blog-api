@@ -52,7 +52,10 @@ localStorage.removeItem("token");
 - Click on the post to see what user sees then the user can delete comments and edit and delete posts (take the same post as user and the comment card but add additional buttons for edit, delete post and just delete comment button. )
 - Nav should include Home, New Post, Profile, Probably don't need a dashboard as not much to do.
 
-- Add delete post!!
+- Add delete post
+- Add publish bool to schema, have to reset data. In new post and edit have a checkbox to publish post.
+- In index, should have a list of published and draft posts
+- Change to order of posts.
 
 ## Backend
 

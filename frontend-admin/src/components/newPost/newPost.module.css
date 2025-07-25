@@ -30,3 +30,20 @@
   width: 100%;
   padding: 1rem;
 }
+
+.checkbox {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  vertical-align: middle; /* Align with text */
+  margin-right: 8px;
+  position: relative; /* For the checkmark */
+}
+.checkboxWrapper {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
