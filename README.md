@@ -43,11 +43,16 @@ localStorage.removeItem("token");
 - Shouldn't need register
 - checking role of user. has to be admin
 - shows the same login as user but checks user role
-- more like a dashboard
 - shows posts in a list
 - shows unpublished and published and the ability to switch the posts.
 - admin can access all comments and can delete
 - Look into [tinyMCE](https://www.tiny.cloud/docs/tinymce/6/cloud-quick-start/) for editing posts.
+
+- Index page shows dashboard and post in lists with published and draft posts. shows amount of comments maybe created or update date on a list style of google drive.
+- Click on the post to see what user sees then the user can delete comments and edit and delete posts (take the same post as user and the comment card but add additional buttons for edit, delete post and just delete comment button. )
+- Nav should include Home, New Post, Profile, Probably don't need a dashboard as not much to do.
+
+- Add delete post!!
 
 ## Backend
 

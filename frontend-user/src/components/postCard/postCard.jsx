@@ -1,12 +1,18 @@
 import styles from "./postCard.module.css";
 
+function stripHtml(html) {
+  const div = document.createElement("div");
+  div.innerHTML = html;
+  return div.textContent || div.innerText || "";
+}
+
 export default function PostCard({ post }) {
-  // Only show a preview of the post
   const previewLength = 100;
+  const plainText = stripHtml(post.post);
   const preview =
-    post.post.length > previewLength
-      ? post.post.slice(0, previewLength) + "..."
-      : post.post;
+    plainText.length > previewLength
+      ? plainText.slice(0, previewLength) + "..."
+      : plainText;
 
   return (
     <div className={styles.postCard}>

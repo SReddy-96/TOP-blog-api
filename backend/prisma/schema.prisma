@@ -27,7 +27,7 @@ model Users {
 model Posts {
   id       Int        @id @default(autoincrement())
   title    String     @db.VarChar(100)
-  post     String
+  post     String     @db.Text
   created  DateTime   @default(now())
   updated  DateTime   @updatedAt
   user     Users      @relation(fields: [userId], references: [id], onDelete: Cascade)

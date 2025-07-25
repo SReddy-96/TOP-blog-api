@@ -1,0 +1,65 @@
+.adminPostWrapper {
+  padding: 2rem;
+}
+
+.adminPostTitle {
+  flex: 1;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.adminActions {
+  display: flex;
+  padding: 1rem;
+}
+
+.adminActionButtons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.post {
+  border: 1px solid #aaa;
+  display: flex;
+  flex-direction: column;
+}
+
+.postTitle {
+  text-align: center;
+  font-size: 5em;
+  height: fit-content;
+  background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+  padding: 1rem;
+}
+
+.postText {
+  padding: 2rem;
+}
+
+.commentTitle {
+  font-size: xx-large;
+  text-align: center;
+}
+
+.line {
+  margin: 1rem 2rem;
+}
+
+.commentWrapper {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  min-width: 500px;
+  gap: 1rem;
+}
+
+.commentForm {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-self: center;
+  min-width: 500px;
+}

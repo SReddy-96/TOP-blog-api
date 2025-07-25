@@ -20,7 +20,10 @@ export default function Post() {
   return (
     <div className={styles.post}>
       <h2 className={styles.postTitle}>{post.title}</h2>
-      <p className={styles.postText}>{post.post}</p>
+      <div
+        className={styles.postText}
+        dangerouslySetInnerHTML={{ __html: post.post }}
+      ></div>
       <h3 className={styles.commentTitle}>Comments</h3>
       <hr className={styles.line} />
       <div className={styles.commentWrapper}>

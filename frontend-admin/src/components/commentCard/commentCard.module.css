@@ -1,0 +1,29 @@
+.commentCard {
+  padding: 1rem;
+  border: 1px solid #aaa;
+  border-radius: 0.5rem;
+  min-width: 250px;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.commentAuthor {
+  font-weight: bold;
+}
+
+.commentAuthor:hover {
+  text-decoration: underline;
+}
+
+.commentDate {
+  font-size: 0.75em;
+}
+
+.commentButtons {
+  display: flex;
+  gap: 0.5rem;
+}

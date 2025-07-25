@@ -62,7 +62,9 @@ const getPost = async (id) => {
 };
 
 const getAllPosts = async () => {
-  const data = await prisma.posts.findMany();
+  const data = await prisma.posts.findMany({
+    include: { comments: true },
+  });
   return data;
 };
 

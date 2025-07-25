@@ -1,0 +1,17 @@
+.postCard {
+  padding: 1rem;
+  border: 1px solid #000;
+  border-radius: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.postCard:hover {
+  box-shadow: 0 4px 4px #00000063;
+  background-color: #dbdbdb85;
+}
+
+.postTitle {
+  font-weight: bold;
+  flex: 1;
+}
