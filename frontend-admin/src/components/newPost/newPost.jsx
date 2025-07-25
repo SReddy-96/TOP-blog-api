@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import { Form } from "react-router-dom";
+import { Form, useActionData } from "react-router-dom";
 import styles from "./newPost.module.css";
 import button from "../../assets/styles/button.module.css";
 
@@ -8,6 +8,7 @@ export default function NewPost() {
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [published, setPublished] = useState(false);
+  const actionData = useActionData();
 
   const handleEditorChange = (content) => {
     setContent(content);
@@ -18,6 +19,9 @@ export default function NewPost() {
       <h2 className={styles.title}>Create a New Post</h2>
       <Form method="POST" className={styles.form}>
         <div>
+          {actionData?.error && (
+            <p className={styles.error}>{actionData.error}</p>
+          )}
           <label htmlFor="title">Title</label>
           <input
             id="title"

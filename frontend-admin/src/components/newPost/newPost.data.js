@@ -15,12 +15,17 @@ export async function action({ request }) {
         published: formData.get("published") === "on", // Convert checkbox value to boolean
       }),
     });
-
-    if (response.ok) {
-      // Handle success - redirect or show success message
-      console.log("Post created successfully!");
-      return redirect("/");
+    if (!response.ok) {
+      const errorData = await response.json();
+      return {
+        error: errorData.errors
+          ? errorData.errors[0].msg
+          : "Failed to create post",
+      };
     }
+
+    // Handle success - redirect or show success message
+    return redirect("/");
   } catch (error) {
     console.error("Error creating post:", error);
   }

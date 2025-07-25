@@ -1,11 +1,12 @@
 import styles from "./commentCard.module.css";
-import { Link, useFetcher } from "react-router-dom";
+import { Link, useActionData, useFetcher } from "react-router-dom";
 import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import button from "../../assets/styles/button.module.css";
 
 export default function CommentCard({ comment }) {
   const Fetcher = useFetcher();
+  const actionData = useActionData();
   const [editingId, setEditingId] = useState(null);
   const [editValue, setEditValue] = useState("");
 
@@ -21,6 +22,9 @@ export default function CommentCard({ comment }) {
           onSubmit={() => setEditingId(null)}
           className={styles.editCommentForm}
         >
+          {actionData?.error && (
+            <p className={styles.error}>{actionData.error}</p>
+          )}
           <textarea
             name="comment"
             value={editValue}

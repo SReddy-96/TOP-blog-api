@@ -63,3 +63,8 @@
   align-self: center;
   min-width: 500px;
 }
+
+.error {
+  color: red;
+  font-weight: bold;
+}

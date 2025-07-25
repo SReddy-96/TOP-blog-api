@@ -1,12 +1,14 @@
-import { useLoaderData, useFetcher } from "react-router-dom";
+import { useLoaderData, useFetcher, useActionData } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import styles from "./profile.module.css";
 import button from "../../assets/styles/button.module.css";
+import { action } from "../post/post.data";
 
 export default function Profile() {
   const { user } = useLoaderData();
   const fetcher = useFetcher();
+  const actionData = useActionData();
 
   const [editUsername, setEditUsername] = useState("");
   const [editingId, setEditingId] = useState(null);
@@ -25,6 +27,9 @@ export default function Profile() {
           className={styles.editForm}
           onSubmit={() => setEditingId(null)}
         >
+          {actionData?.error && (
+            <p className={styles.error}>{actionData.error}</p>
+          )}
           <label htmlFor="username">Edit Username: </label>
           <input
             type="text"
