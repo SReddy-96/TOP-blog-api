@@ -12,9 +12,9 @@ export default function Login() {
           <p className={styles.error}>{actionData.error}</p>
         )}
         <label htmlFor="username">Username:</label>
-        <input type="text" name="username" id="username" />
+        <input type="text" name="username" id="username" autoComplete="username"/>
         <label htmlFor="password">Password:</label>
-        <input type="password" name="password" id="password" />
+        <input type="password" name="password" id="password" autoComplete="current-password"/>
         <button className={button.primaryButton} type="submit">
           Login
         </button>

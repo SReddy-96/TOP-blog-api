@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { useLoaderData, Link, useFetcher } from "react-router-dom";
+import {
+  useLoaderData,
+  Link,
+  useFetcher,
+  useActionData,
+} from "react-router-dom";
 import styles from "./post.module.css";
 import button from "../../assets/styles/button.module.css";
 import CommentCard from "../commentCard/commentCard";
@@ -7,6 +12,7 @@ import CommentCard from "../commentCard/commentCard";
 export default function Post() {
   const { post } = useLoaderData();
   const fetcher = useFetcher();
+  const actionData = useActionData();
 
   const [comment, setComment] = useState("");
 
@@ -32,6 +38,9 @@ export default function Post() {
         ))}
       </div>
       <fetcher.Form method="post" className={styles.commentForm}>
+        {actionData && actionData.error && (
+          <p className={styles.error}>{actionData.error}</p>
+        )}
         <label htmlFor="comment">Comment: </label>
         <textarea
           id="comment"

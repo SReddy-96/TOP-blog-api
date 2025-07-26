@@ -39,11 +39,11 @@ export async function action({ request, params }) {
   );
   if (!res.ok) {
     const errorData = await res.json();
-    // Handle validation errors from your backend
-    if (errorData.errors) {
-      throw new Error(errorData.errors[0].msg);
-    }
-    throw new Error("Failed to comment");
+    return {
+      error: errorData.errors
+        ? errorData.errors[0].msg
+        : "Failed to add comment",
+    };
   }
   return res.json();
 }
@@ -78,6 +78,13 @@ export async function editCommentAction({ request, params }) {
       body: JSON.stringify({ comment: formData.get("comment") }),
     },
   );
-  if (!res.ok) throw new Error("Failed to edit comment");
+  if (!res.ok) {
+    const errorData = await res.json();
+    return {
+      error: errorData.errors
+        ? errorData.errors[0].msg
+        : "Failed to edit comment",
+    };
+  }
   return null;
 }

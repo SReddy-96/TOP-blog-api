@@ -33,7 +33,7 @@ A blog site using jamstack to separate out the front-end and back-end, showing u
 
 ```js
 // On login success
-localStorage.setItem('token', token);
+localStorage.setItem("token", token);
 // On logout
 localStorage.removeItem("token");
 ```
@@ -56,6 +56,10 @@ localStorage.removeItem("token");
 - Add publish bool to schema, have to reset data. In new post and edit have a checkbox to publish post.
 - In index, should have a list of published and draft posts
 - Change to order of posts.
+- Create a validation error component to show form errors and user credential errors.
+- only admin can log in admin dashboard
+
+- Change nav when in mobile version, check user side nav
 
 ## Backend
 

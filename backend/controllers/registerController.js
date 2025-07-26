@@ -20,7 +20,7 @@ const postRegister = [
       const newUser = await db.insertUser(username, hashedPassword);
       const token = generateAccessToken(newUser);
       // send token to client
-      res.status(201).json({ token });
+      res.status(201).json({ token: token, role: newUser.role });
     } catch (err) {
       err.statusCode = err.statusCode || 500;
       next(err);

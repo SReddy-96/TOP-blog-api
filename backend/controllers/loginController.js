@@ -29,7 +29,7 @@ const postLogin = [
         });
       }
       const token = generateAccessToken(user);
-      res.json({ token });
+      res.json({ token: token, role: user.role });
     })(req, res, next);
   },
 ];

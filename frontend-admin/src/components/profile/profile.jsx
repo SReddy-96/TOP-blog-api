@@ -3,7 +3,6 @@ import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import styles from "./profile.module.css";
 import button from "../../assets/styles/button.module.css";
-import { action } from "../post/post.data";
 
 export default function Profile() {
   const { user } = useLoaderData();
@@ -33,6 +32,7 @@ export default function Profile() {
           <label htmlFor="username">Edit Username: </label>
           <input
             type="text"
+            id="username"
             name="username"
             value={editUsername}
             onChange={(e) => setEditUsername(e.target.value)}

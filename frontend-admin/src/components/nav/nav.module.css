@@ -16,3 +16,13 @@
 .navLink:hover {
   text-decoration: underline;
 }
+
+@media screen and (max-width: 800px) {
+  .navLink {
+    border: 1px solid #aaa;
+    padding: 0.5rem;
+  }
+  .navLink:hover {
+    text-decoration: none;
+  }
+}

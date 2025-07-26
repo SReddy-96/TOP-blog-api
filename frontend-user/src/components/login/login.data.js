@@ -16,11 +16,9 @@ export async function action({ request }) {
     });
     if (!res.ok) {
       const errorData = await res.json();
-      // Handle validation errors from your backend
-      if (errorData.errors) {
-        throw new Error(errorData.errors[0].msg);
-      }
-      throw new Error("Failed to login");
+      return {
+        error: errorData.errors ? errorData.errors[0].msg : "Failed to login",
+      };
     }
 
     // Get the actual JSON data from the response

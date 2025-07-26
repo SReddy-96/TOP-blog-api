@@ -51,6 +51,13 @@ export async function editUserAction({ request, params }) {
       username: formData.get("username"),
     }),
   });
-  if (!res.ok) throw new Error("Failed to edit user");
+  if (!res.ok) {
+    const errorData = await res.json();
+    return {
+      error: errorData.errors
+        ? errorData.errors[0].msg
+        : "Failed to update profile",
+    };
+  }
   return null;
 }

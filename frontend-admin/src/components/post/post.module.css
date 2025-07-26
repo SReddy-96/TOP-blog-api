@@ -68,3 +68,15 @@
   color: red;
   font-weight: bold;
 }
+
+@media screen and (max-width: 600px) {
+  .adminActions {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .commentWrapper, .commentForm {
+    min-width: 250px;
+  }
+}

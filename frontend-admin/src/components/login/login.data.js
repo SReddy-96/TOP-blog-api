@@ -24,6 +24,13 @@ export async function action({ request }) {
     // Get the actual JSON data from the response
     const data = await res.json();
 
+    // check if login role is admin
+    if (data.role !== "ADMIN") {
+      return {
+        error: "You do not have permission to access the admin dashboard.",
+      };
+    }
+
     // Store the token (assuming your backend returns { token: "..." })
     localStorage.setItem("token", data.token);
 
