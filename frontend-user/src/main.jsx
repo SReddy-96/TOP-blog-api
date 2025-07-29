@@ -23,9 +23,13 @@ import Profile from "./components/profile/profile";
 import {
   loader as userLoader,
   editUserAction,
-  deleteUserAction,
 } from "./components/profile/profile.data";
 import Root from "./components/root/root";
+import DeleteProfile from "./components/deleteProfile/deleteProfile";
+import {
+  action as DeleteProfileAction,
+  loader as DeleteProfileLoader,
+} from "./components/deleteProfile/deleteProfile.data";
 
 // add routes to pages !!!
 const router = createBrowserRouter([
@@ -70,11 +74,13 @@ const router = createBrowserRouter([
                 path: "edit",
                 action: editUserAction,
               },
-              {
-                path: "delete",
-                action: deleteUserAction,
-              },
             ],
+          },
+          {
+            path: "users/:userId/delete",
+            loader: DeleteProfileLoader,
+            action: DeleteProfileAction,
+            element: <DeleteProfile />,
           },
         ],
       },

@@ -1,4 +1,9 @@
-import { useLoaderData, useFetcher, useActionData } from "react-router-dom";
+import {
+  useLoaderData,
+  useFetcher,
+  useActionData,
+  Link,
+} from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import styles from "./profile.module.css";
@@ -27,7 +32,7 @@ export default function Profile() {
           onSubmit={() => setEditingId(null)}
         >
           {actionData && actionData.error && (
-            <p className={styles.errorMessage}>{actionData.error}</p>
+            <p className={styles.error}>{actionData.error}</p>
           )}
           <label htmlFor="username">Edit Username: </label>
           <input
@@ -86,11 +91,11 @@ export default function Profile() {
               >
                 Edit
               </button>
-              <fetcher.Form method="DELETE" action={"delete"}>
-                <button className={button.dangerButton} type="submit">
+              <Link to={`/users/${user.id}/delete`}>
+                <button className={button.dangerButton} type="button">
                   Delete
                 </button>
-              </fetcher.Form>
+              </Link>
             </div>
           ) : (
             <></>

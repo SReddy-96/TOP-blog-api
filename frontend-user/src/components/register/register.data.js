@@ -3,7 +3,7 @@ import { redirect } from "react-router-dom";
 export async function action({ request }) {
   try {
     const formData = await request.formData();
-    const res = await fetch("http://localhost:3000/register", {
+    const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/register`, {
       mode: "cors",
       method: "POST",
       headers: {

@@ -27,7 +27,7 @@ export async function action({ request, params }) {
   const formData = await request.formData();
   const token = localStorage.getItem("token");
   const res = await fetch(
-    `http://localhost:3000/posts/${params.postId}/comments`,
+    `${import.meta.env.VITE_API_BASE_URL}/posts/${params.postId}/comments`,
     {
       method: "POST",
       headers: {
@@ -51,7 +51,7 @@ export async function action({ request, params }) {
 export async function deleteCommentAction({ params }) {
   const token = localStorage.getItem("token");
   const res = await fetch(
-    `http://localhost:3000/posts/${params.postId}/comments/${params.commentId}`,
+    `${import.meta.env.VITE_API_BASE_URL}/posts/${params.postId}/comments/${params.commentId}`,
     {
       method: "DELETE",
       headers: {
@@ -68,7 +68,7 @@ export async function editCommentAction({ request, params }) {
   const formData = await request.formData();
   const token = localStorage.getItem("token");
   const res = await fetch(
-    `http://localhost:3000/posts/${params.postId}/comments/${params.commentId}`,
+    `${import.meta.env.VITE_API_BASE_URL}/posts/${params.postId}/comments/${params.commentId}`,
     {
       method: "PUT",
       headers: {

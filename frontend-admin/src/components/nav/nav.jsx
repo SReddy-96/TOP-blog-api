@@ -29,7 +29,7 @@ export default function Nav() {
 
   function handleLogout() {
     localStorage.removeItem("token");
-    navigate("/");
+    navigate("login");
   }
 
   return token ? (

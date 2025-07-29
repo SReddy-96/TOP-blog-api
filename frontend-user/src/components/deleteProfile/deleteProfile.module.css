@@ -1,0 +1,21 @@
+.wrapper {
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  align-items: center;
+  border: 1px solid #aaa;
+  box-shadow: 0 4px 4px #00000063;
+}
+
+.deleteTitle {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+}

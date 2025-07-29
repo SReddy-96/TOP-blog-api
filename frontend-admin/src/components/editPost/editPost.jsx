@@ -72,14 +72,17 @@ export default function EditPost() {
           />
         </div>
 
-        <label htmlFor="published">Published:</label>
-        <input
-          type="checkbox"
-          id="published"
-          name="published"
-          checked={published}
-          onChange={(e) => setPublished(e.target.checked)}
-        />
+        <label htmlFor="published" className={styles.checkboxWrapper}>
+          <input
+            className={styles.checkbox}
+            type="checkbox"
+            id="published"
+            name="published"
+            checked={published}
+            onChange={(e) => setPublished(e.target.checked)}
+          />
+          Publish
+        </label>
         <input type="hidden" name="content" value={content} />
         <div className={styles.buttonWrapper}>
           <button type="submit" className={button.primaryButton}>

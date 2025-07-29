@@ -1,4 +1,9 @@
-import { useLoaderData, useFetcher, useActionData } from "react-router-dom";
+import {
+  useLoaderData,
+  useFetcher,
+  useActionData,
+  Link,
+} from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import styles from "./profile.module.css";
@@ -87,11 +92,12 @@ export default function Profile() {
               >
                 Edit
               </button>
-              <fetcher.Form method="DELETE" action={"delete"}>
-                <button className={button.dangerButton} type="submit">
-                  Delete
-                </button>
-              </fetcher.Form>
+              <Link
+                to={`/users/${user.id}/delete`}
+                className={button.dangerButton}
+              >
+                Delete
+              </Link>
             </div>
           ) : (
             <></>

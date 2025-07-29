@@ -9,7 +9,7 @@ export default function Login() {
       <Form method="POST" className={styles.loginForm}>
         <legend className={styles.loginTitle}>Login</legend>
         {actionData && actionData.error && (
-          <div className={styles.errorMessage}>{actionData.error}</div>
+          <div className={styles.error}>{actionData.error}</div>
         )}
         <label htmlFor="username">Username:</label>
         <input type="text" name="username" id="username" />

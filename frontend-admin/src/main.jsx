@@ -20,7 +20,6 @@ import Profile from "./components/profile/profile";
 import {
   loader as userLoader,
   editUserAction,
-  deleteUserAction,
 } from "./components/profile/profile.data";
 import Post from "./components/post/post";
 import {
@@ -34,6 +33,11 @@ import {
   loader as DeletePostLoader,
   action as DeletePostAction,
 } from "./components/deletePost/deletePost.data";
+import DeleteProfile from "./components/deleteProfile/deleteProfile";
+import {
+  action as DeleteProfileAction,
+  loader as DeleteProfileLoader,
+} from "./components/deleteProfile/deleteProfile.data";
 
 // auth checker middleware
 import RequireAuth from "./components/requireAuth";
@@ -79,11 +83,17 @@ const router = createBrowserRouter([
                 path: "edit",
                 action: editUserAction,
               },
-              {
-                path: "delete",
-                action: deleteUserAction,
-              },
             ],
+          },
+          {
+            path: "users/:userId/delete",
+            loader: DeleteProfileLoader,
+            action: DeleteProfileAction,
+            element: (
+              <RequireAuth>
+                <DeleteProfile />
+              </RequireAuth>
+            ),
           },
           {
             path: "posts/:postId",

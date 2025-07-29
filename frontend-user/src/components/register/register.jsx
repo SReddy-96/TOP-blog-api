@@ -9,7 +9,7 @@ export default function Register() {
       <Form method="POST" className={styles.registerForm}>
         <legend className={styles.registerTitle}>Register</legend>
         {actionData && actionData.error && (
-          <div className={styles.errorMessage}>{actionData.error}</div>
+          <div className={styles.error}>{actionData.error}</div>
         )}
         <label htmlFor="username">Username:</label>
         <input type="text" name="username" id="username" autoComplete="true" />
