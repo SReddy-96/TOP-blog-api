@@ -2,13 +2,16 @@ import { redirect } from "react-router-dom";
 
 export async function loader({ params }) {
   const token = localStorage.getItem("token");
-  const res = await fetch(`http://localhost:3000/posts/${params.postId}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+  const res = await fetch(
+    `${import.meta.env.VITE_API_BASE_URL}/posts/${params.postId}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     },
-  });
+  );
   // redirect if not logged in
   if (res.status === 401) {
     return redirect("/");

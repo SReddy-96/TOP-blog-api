@@ -9,7 +9,7 @@ export async function loader({ params }) {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
-      },
+      },  
     },
   );
   // redirect if not logged in
