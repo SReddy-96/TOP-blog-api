@@ -2,7 +2,7 @@ import { redirect } from "react-router-dom";
 
 export async function loader({ params }) {
   const token = localStorage.getItem("token");
-  const res = await fetch(`http://localhost:3000/users/${params.userId}`, {
+  const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/${params.userId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -26,7 +26,7 @@ export async function loader({ params }) {
 
 export async function deleteUserAction({ params }) {
   const token = localStorage.getItem("token");
-  const res = await fetch(`http://localhost:3000/users/${params.userId}`, {
+  const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/${params.userId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -41,7 +41,7 @@ export async function deleteUserAction({ params }) {
 export async function editUserAction({ request, params }) {
   const formData = await request.formData();
   const token = localStorage.getItem("token");
-  const res = await fetch(`http://localhost:3000/users/${params.userId}`, {
+  const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/${params.userId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
